@@ -3,13 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>DowanloaderPro</title>
+    <title>DowanloaderPro - Ultimate Media Downloader</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Monetag Anti-Adblock & In-App Script -->
-    <!-- لە شوێنی YOUR_MONETAG_ZONE_ID کۆدی خۆت دابنێ -->
-    <script src="https://alwingulla.com/88/tag.min.js" data-zone="YOUR_MONETAG_ZONE_ID" async data-cfasync="false"></script>
-
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
 
@@ -25,7 +21,7 @@
 
         header {
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -33,13 +29,31 @@
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             color: #00f2fe;
             display: flex;
             align-items: center;
             gap: 10px;
             letter-spacing: 0.5px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-select {
+            background: #13151f;
+            color: #00f2fe;
+            border: 1px solid #222638;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
         }
 
         .badge-pro {
@@ -57,7 +71,7 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             margin-bottom: 25px;
         }
 
@@ -89,7 +103,7 @@
 
         .main-card {
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
             background: #13151f;
             border: 1px solid #222638;
             border-radius: 24px;
@@ -227,7 +241,6 @@
 
         .btn-download i { color: #00ffff; }
 
-        /* Slow Motion RGB Frame for Download/Result Area */
         .preview-box-rgb-wrapper {
             display: none;
             margin-top: 25px;
@@ -307,6 +320,76 @@
         .dl-link-btn i { color: #00f2fe; }
 
         #statusText { margin-top: 15px; font-size: 13px; font-weight: 600; text-align: center; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+            max-width: 650px;
+            margin-bottom: 25px;
+        }
+
+        .feature-card {
+            background: #13151f;
+            border: 1px solid #222638;
+            border-radius: 16px;
+            padding: 18px 10px;
+            text-align: center;
+        }
+
+        .feature-card i { font-size: 24px; color: #00f2fe; margin-bottom: 8px; }
+        .feature-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+        .feature-card p { font-size: 11px; color: #7e859b; }
+
+        .faq-section {
+            width: 100%;
+            max-width: 650px;
+            background: #13151f;
+            border: 1px solid #222638;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .faq-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #00f2fe;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #222638;
+            padding: 12px 0;
+        }
+
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question { font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #fff; }
+        .faq-answer { font-size: 12px; color: #7e859b; line-height: 1.5; }
+
+        footer {
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            padding-top: 10px;
+            border-top: 1px solid #1a1d2e;
+            color: #5d6375;
+            font-size: 11px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links a { color: #7e859b; text-decoration: none; font-weight: 600; }
+        .footer-links a:hover { color: #00f2fe; }
     </style>
 </head>
 <body>
@@ -315,23 +398,31 @@
         <div class="logo">
             <i class="fa-solid fa-cloud-arrow-down"></i> DowanloaderPro
         </div>
-        <span class="badge-pro">ULTRA HD</span>
+        <div class="header-right">
+            <!-- Language Selector -->
+            <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="en">🌐 English</option>
+                <option value="es">🌐 Español</option>
+                <option value="it">🌐 Italiano</option>
+            </select>
+            <span class="badge-pro">GLOBAL HD</span>
+        </div>
     </header>
 
     <div class="platform-bar">
-        <div class="platform-card active" onclick="switchPlatform('TikTok', this, 'Paste TikTok Link Here!')">
+        <div class="platform-card active" onclick="switchPlatform('TikTok', this)">
             <i class="fa-brands fa-tiktok"></i>
             <span>TikTok</span>
         </div>
-        <div class="platform-card" onclick="switchPlatform('YouTube', this, 'Paste YouTube Link Here!')">
+        <div class="platform-card" onclick="switchPlatform('YouTube', this)">
             <i class="fa-brands fa-youtube"></i>
             <span>YouTube</span>
         </div>
-        <div class="platform-card" onclick="switchPlatform('Snapchat', this, 'Paste Snapchat Link Here!')">
+        <div class="platform-card" onclick="switchPlatform('Snapchat', this)">
             <i class="fa-brands fa-snapchat"></i>
             <span>Snapchat</span>
         </div>
-        <div class="platform-card" onclick="switchPlatform('Facebook', this, 'Paste Facebook Link Here!')">
+        <div class="platform-card" onclick="switchPlatform('Facebook', this)">
             <i class="fa-brands fa-facebook"></i>
             <span>Facebook</span>
         </div>
@@ -339,18 +430,18 @@
 
     <div class="main-card">
         <h1 class="hero-title" id="platformTitle">TikTok Downloader</h1>
-        <p class="hero-subtitle">Fast, Free & Watermark-Free Downloads</p>
+        <p class="hero-subtitle" id="heroSubtitle">Fast, Free & Unlimited Media Saver</p>
 
         <div class="quality-options">
             <span class="q-chip active" onclick="selectQuality(this)">Auto Best</span>
-            <span class="q-chip" onclick="selectQuality(this)">4K / HD</span>
-            <span class="q-chip" onclick="selectQuality(this)">1080p</span>
+            <span class="q-chip" onclick="selectQuality(this)">4K / Ultra HD</span>
+            <span class="q-chip" onclick="selectQuality(this)">1080p Original</span>
             <span class="q-chip" onclick="selectQuality(this)">MP3 Audio</span>
         </div>
 
         <div class="input-wrapper">
             <input type="text" id="urlInput" placeholder="Paste TikTok Link Here!">
-            <button class="btn-paste" onclick="pasteFromClipboard()">
+            <button class="btn-paste" onclick="pasteFromClipboard()" id="btnPasteText">
                 <i class="fa-regular fa-clipboard"></i> Paste
             </button>
         </div>
@@ -358,13 +449,12 @@
         <div class="btn-download-wrapper" onclick="startProcess()">
             <button class="btn-download">
                 <i class="fa-solid fa-bolt"></i>
-                <span>Download Now</span>
+                <span id="btnDownloadText">Download Now</span>
             </button>
         </div>
 
         <div id="statusText"></div>
 
-        <!-- Result Box with RGB Slow Motion Frame -->
         <div class="preview-box-rgb-wrapper" id="previewBoxWrapper">
             <div class="preview-box">
                 <div class="video-info">
@@ -380,13 +470,115 @@
         </div>
     </div>
 
+    <div class="features-grid">
+        <div class="feature-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h4 id="f1Title">100% Secure</h4>
+            <p id="f1Desc">No login or personal data required</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-gauge-high"></i>
+            <h4 id="f2Title">Ultra Fast</h4>
+            <p id="f2Desc">High-speed cloud processing</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h4 id="f3Title">No Watermark</h4>
+            <p id="f3Desc">Clean HD video downloads</p>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <div class="faq-title" id="faqTitle">
+            <i class="fa-solid fa-circle-question"></i> Frequently Asked Questions
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" id="faqQ1">Do I have to pay for downloads?</div>
+            <div class="faq-answer" id="faqA1">No, DowanloaderPro is completely free with no daily limitations.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" id="faqQ2">Are downloaded videos watermark-free?</div>
+            <div class="faq-answer" id="faqA2">Yes! All videos are downloaded without any watermark in original quality.</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> • 
+            <a href="#">Terms of Service</a> • 
+            <a href="#">Support</a>
+        </div>
+        <p>© 2026 DowanloaderPro. All rights reserved.</p>
+    </footer>
+
     <script>
-        function switchPlatform(platform, element, placeholderText) {
+        let currentLang = 'en';
+        let currentPlatform = 'TikTok';
+
+        const translations = {
+            en: {
+                subtitle: "Fast, Free & Unlimited Media Saver",
+                placeholder: "Paste {platform} Link Here!",
+                paste: "Paste",
+                download: "Download Now",
+                f1T: "100% Secure", f1D: "No login or personal data required",
+                f2T: "Ultra Fast", f2D: "High-speed cloud processing",
+                f3T: "No Watermark", f3D: "Clean HD video downloads",
+                faqTitle: "Frequently Asked Questions",
+                q1: "Do I have to pay for downloads?", a1: "No, DowanloaderPro is completely free with no daily limitations.",
+                q2: "Are downloaded videos watermark-free?", a2: "Yes! All videos are downloaded without any watermark in original quality."
+            },
+            es: {
+                subtitle: "Guardador de medios rápido, gratuito و ilimitado",
+                placeholder: "¡Pega el enlace de {platform} aquí!",
+                paste: "Pegar",
+                download: "Descargar Ahora",
+                f1T: "100% Seguro", f1D: "Sin inicio de sesión ni datos personales",
+                f2T: "Ultra Rápido", f2D: "Procesamiento en la nube de alta velocidad",
+                f3T: "Sin Marca de Agua", f3D: "Descargas de video HD limpias",
+                faqTitle: "Preguntas Frecuentes",
+                q1: "¿Tengo que pagar por las descargas?", a1: "No, DowanloaderPro es totalmente gratuito y sin límites diarios.",
+                q2: "¿Los videos descargados no tienen marca de agua?", a2: "¡Sí! Todos los videos se descargan sin marca de agua en calidad original."
+            },
+            it: {
+                subtitle: "Salva media veloce, gratuito e illimitato",
+                placeholder: "Incolla il link di {platform} qui!",
+                paste: "Incolla",
+                download: "Scarica Ora",
+                f1T: "Sicuro al 100%", f1D: "Nessun login o dato personale richiesto",
+                f2T: "Ultra Veloce", f2D: "Elaborazione cloud ad alta velocità",
+                f3T: "Senza Filigrana", f3D: "Download di video HD puliti",
+                faqTitle: "Domande Frequenti",
+                q1: "Devo pagare per i download?", a1: "No, DowanloaderPro è completamente gratuito e senza limiti giornalieri.",
+                q2: "I video scaricati sono senza filigrana?", a2: "Sì! Tutti i video vengono scaricati senza filigrana in qualità originale."
+            }
+        };
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            const t = translations[lang];
+
+            document.getElementById('heroSubtitle').innerText = t.subtitle;
+            document.getElementById('urlInput').placeholder = t.placeholder.replace('{platform}', currentPlatform);
+            document.getElementById('btnPasteText').innerHTML = `<i class="fa-regular fa-clipboard"></i> ${t.paste}`;
+            document.getElementById('btnDownloadText').innerText = t.download;
+
+            document.getElementById('f1Title').innerText = t.f1T; document.getElementById('f1Desc').innerText = t.f1D;
+            document.getElementById('f2Title').innerText = t.f2T; document.getElementById('f2Desc').innerText = t.f2D;
+            document.getElementById('f3Title').innerText = t.f3T; document.getElementById('f3Desc').innerText = t.f3D;
+
+            document.getElementById('faqTitle').innerHTML = `<i class="fa-solid fa-circle-question"></i> ${t.faqTitle}`;
+            document.getElementById('faqQ1').innerText = t.q1; document.getElementById('faqA1').innerText = t.a1;
+            document.getElementById('faqQ2').innerText = t.q2; document.getElementById('faqA2').innerText = t.a2;
+        }
+
+        function switchPlatform(platform, element) {
+            currentPlatform = platform;
             document.querySelectorAll('.platform-card').forEach(card => card.classList.remove('active'));
             element.classList.add('active');
 
             document.getElementById('platformTitle').innerText = platform + ' Downloader';
-            document.getElementById('urlInput').placeholder = placeholderText;
+            document.getElementById('urlInput').placeholder = translations[currentLang].placeholder.replace('{platform}', platform);
             document.getElementById('previewBoxWrapper').style.display = 'none';
             document.getElementById('statusText').innerHTML = '';
         }
